@@ -13,6 +13,7 @@
 		866C160F27D7AC62005310AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866C160E27D7AC62005310AE /* Preview Assets.xcassets */; };
 		866C161627D7AC72005310AE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 866C161527D7AC72005310AE /* .gitignore */; };
 		866C161C27D7AD76005310AE /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C161B27D7AD76005310AE /* ContentModel.swift */; };
+		866C161E27D7AEFD005310AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C161D27D7AEFD005310AE /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		866C160E27D7AC62005310AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		866C161527D7AC72005310AE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		866C161B27D7AD76005310AE /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		866C161D27D7AEFD005310AE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		866C161A27D7ACA2005310AE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				866C161D27D7AEFD005310AE /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				866C160A27D7AC60005310AE /* LaunchView.swift in Sources */,
 				866C160827D7AC60005310AE /* CitySightsApp.swift in Sources */,
 				866C161C27D7AD76005310AE /* ContentModel.swift in Sources */,
+				866C161E27D7AEFD005310AE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

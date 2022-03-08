@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LaunchViewView.swift
 //  City Sights App
 //
 //  Created by Evelina Semezyte on 2022-03-08.
@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct LaunchView: View {
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LaunchView()
     }
 }

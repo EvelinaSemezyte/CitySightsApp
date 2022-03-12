@@ -12,6 +12,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
     
     var locationManager = CLLocationManager()
     
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
+    
     @Published var restaurants = [Business]()
     @Published var sights = [Business]()
     
@@ -31,6 +33,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
     
     // MARK: - Location Manager Delegate Methods
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        // Update the authorizationState property
+        authorizationState = locationManager.authorizationStatus
         
         if locationManager.authorizationStatus == .authorizedAlways ||
             locationManager.authorizationStatus == .authorizedWhenInUse {
@@ -55,7 +60,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
             // Stop requesting the location after we got it once
             locationManager.stopUpdatingLocation()
             
-            // TODO: If we have the coordinates of the user, send into Yelp APIv
+            // TODO: If we have the coordinates of the user, send into Yelp API
             getBusinesses(category: Constants.restaurantsKey, location: userLocation!)
             getBusinesses(category: Constants.sightsKey, location: userLocation!)
         }
@@ -69,7 +74,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
         urlComponents?.queryItems = [
             URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
             URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
-            URLQueryItem(name: "categories", value: "restaurants"),
+            URLQueryItem(name: "categories", value: category),
             URLQueryItem(name: "limit", value: "6")
             
         ]
@@ -96,15 +101,25 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
                         let decoder = JSONDecoder()
                         let result = try decoder.decode(BusinessSearch.self, from: data!)
                         
+                        // Sort businesses
+                        var businesses = result.businesses
+                        businesses.sort { (b1, b2) -> Bool in
+                            return b1.distance ?? 0 < b2.distance ?? 0
+                        }
+                        
+                        // Call the get image function of the businesses
+                        for b in businesses {
+                            b.getImageData()
+                        }
                         
                         DispatchQueue.main.async {
                             
                             // Assign results to the appropriate property
                             switch category {
                             case Constants.sightsKey:
-                                self.sights = result.businesses
+                                self.sights = businesses
                             case Constants.restaurantsKey:
-                                self.restaurants = result.businesses
+                                self.restaurants = businesses
                             default:
                                 break
                             }

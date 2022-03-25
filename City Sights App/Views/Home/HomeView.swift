@@ -16,46 +16,48 @@ struct HomeView: View {
         
         if model.restaurants.count != 0 || model.sights.count != 0 {
             
-            // Determine if we should show lis or map
-            if !isMapShowing {
-                
-                // Show list
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "mappin")
-                            .font(.title3)
-                        
-                        Text("New York")
-                            .font(.title3)
-                            .bold()
-                        
-                        Spacer()
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Swith to Map View")
+            NavigationView {
+                // Determine if we should show lis or map
+                if !isMapShowing {
+                    
+                    // Show list
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "mappin")
                                 .font(.title3)
+                            
+                            Text("New York")
+                                .font(.title3)
+                                .bold()
+                            
+                            Spacer()
+                            
+                            Button {
+                                
+                            } label: {
+                                Text("Swith to Map View")
+                                    .font(.title3)
+                            }
+                            
                         }
-
+                        
+                        Divider()
+                        
+                        BusinessList()
                     }
-                    
-                    Divider()
-                    
-                    BusinessList()
+                    .padding([.horizontal, .top])
+                    .navigationBarHidden(true)
                 }
-                .padding([.horizontal, .top])
-            }
-            else {
-                // Show map
-                
+                else {
+                    // Show map
+                    
+                }
             }
         }
         else {
             // Still waiting for data so show spinner
             ProgressView()
         }
-        
     }
 }
 

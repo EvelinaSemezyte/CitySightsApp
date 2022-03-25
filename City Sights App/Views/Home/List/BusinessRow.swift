@@ -44,6 +44,7 @@ struct BusinessRow: View {
                 
                 
             }
+            .foregroundColor(.black)
             Divider()
         }
     }

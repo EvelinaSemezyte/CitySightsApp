@@ -71,6 +71,7 @@ class Business: Decodable, Identifiable, ObservableObject {
             dataTask.resume()
         }
     }
+    
 }
 
 struct Location: Decodable {

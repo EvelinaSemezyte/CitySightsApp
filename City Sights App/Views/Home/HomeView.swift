@@ -33,7 +33,7 @@ struct HomeView: View {
                             Spacer()
                             
                             Button {
-                                
+                                self.isMapShowing = true
                             } label: {
                                 Text("Swith to Map View")
                                     .font(.title3)
@@ -50,6 +50,8 @@ struct HomeView: View {
                 }
                 else {
                     // Show map
+                    BusinessMap()
+                        .ignoresSafeArea()
                     
                 }
             }
